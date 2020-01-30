@@ -52,8 +52,7 @@ export default {
       this.searchVal = value;
       console.log("HERE IS WHAT I TYPED:", this.searchVal)
       if(this.searchVal ===""){
-        console.log("EMPTYY!!!!!")
-        this.apiSuggestVals = []
+        this.apiSuggestVals = [];
       }
       else if (this.searchVal) {
         axios.get(`https://autocomplete.clearbit.com/v1/companies/suggest?query=${this.searchVal}`)
@@ -70,21 +69,16 @@ export default {
       console.log("TRIGGERED filteredMyLogos", apiResponse);
     },
     addToCollection(newItem){
-      console.log("EMITTED!!!!: ", newItem)
       if (this.myLogos.findIndex(x => x.name === newItem.name) < 0) {
         this.myLogos = [...this.myLogos, newItem];
-        console.log("CREATED_OBJ", this.myLogos);
       }
       else { 
        alert("This logo is already in the collection!");
       }
     },
     deleteFromCollection(deleteTarget) {
-      console.log("EMITTED AND TRYING TO DELETE THIS: ", deleteTarget)
       const indexOfTarget = this.myLogos.findIndex(i => i.name === deleteTarget.name);
       const lastDeleted = this.myLogos.splice(indexOfTarget, 1);
-      console.log("Here is the array index num of delete TARGET: ",indexOfTarget);
-      console.log("DELETED this last", lastDeleted);
     }
   }
 }

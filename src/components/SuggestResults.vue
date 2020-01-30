@@ -25,7 +25,6 @@ export default {
       }
       //Send to parent
       this.$emit('add-item', newItem);
-      console.log("OBJECT I AM SENDING", newItem);
     }
   }
 }

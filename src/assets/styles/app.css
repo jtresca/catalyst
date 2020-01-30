@@ -29,6 +29,19 @@ body {
   font-weight: 300;
 }
 
+.logo-count {
+  background: #ff4800;
+  text-align: center;
+  font-size: .85em;
+  font-weight: bold;
+  color: white;
+  width: 25px;
+  height: 25px;
+  padding: .3em;
+  border-radius: 50%;
+  display: inline-block;
+}
+
 button:focus {
   outline:0;
 }
@@ -73,6 +86,7 @@ p {
   padding: 2em;
   line-height: 1.25em;
   letter-spacing:.05em;
+  background: white;
 }
 
 h3 {

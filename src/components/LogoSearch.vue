@@ -10,7 +10,6 @@ export default {
   props: ["suggest"],
   methods: {
     addItem() {
-      console.log("ITEM ADDED");
     }
   }
   

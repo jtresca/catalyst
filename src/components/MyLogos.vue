@@ -12,7 +12,6 @@ export default {
   props: ["logoStore"],
   methods: {
     deleteItem(logoItem) {
-      console.log("DELETE THIS ITEM: ",logoItem);
       const { name, domain, logo} = logoItem;
       const deleteTarget = {
         name,
@@ -21,7 +20,6 @@ export default {
       }
     //Send to parent
       this.$emit('delete-item', deleteTarget);
-      console.log("OBJECT I AM DELETE", deleteTarget);
     }
     }
   }

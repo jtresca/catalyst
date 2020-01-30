@@ -29,6 +29,10 @@ body {
   font-weight: 300;
 }
 
+button:focus {
+  outline:0;
+}
+
 .main-hero-container {
   width: 100%;
   display: flex;

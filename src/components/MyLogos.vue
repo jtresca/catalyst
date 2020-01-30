@@ -1,7 +1,7 @@
 <template>
   <div class="store-container">
-    <ul  v-bind:key="logo.id" v-for="logo in logoStore">
-      <li class="logo-item"><img :src="logo.logo" height="60" width="60"><span>{{logo.name}}</span><button>+</button></li> 
+    <ul  v-bind:key="logoItem.id" v-for="logoItem in logoStore">
+      <li class="logo-item"><img :src="logoItem.logo" height="60" width="60"><span>{{logoItem.name}}</span><button @click="deleteItem(logoItem)">+</button></li> 
     </ul>
   </div>
 </template>
@@ -11,12 +11,22 @@ export default {
   name: "MyLogos",
   props: ["logoStore"],
   methods: {
-    addItem() {
-      
+    deleteItem(logoItem) {
+      console.log("DELETE THIS ITEM: ",logoItem);
+      const { name, domain, logo} = logoItem;
+      const deleteTarget = {
+        name,
+        domain,
+        logo
+      }
+    //Send to parent
+      this.$emit('delete-item', deleteTarget);
+      console.log("OBJECT I AM DELETE", deleteTarget);
+    }
     }
   }
   
-}
+
 </script>
 
 <style scoped>
@@ -29,8 +39,8 @@ export default {
     width: 20px;
     height: 20px;
     position: relative;
-    bottom: 3.25em;
-    left: 5em;
+    bottom: 3.65em;
+    left: 5.75em;
     background: none;
     border: none;
     font-size: 2em;
@@ -56,7 +66,7 @@ export default {
   }
 
   .logo-item {
-    font-size: .75em;
+    font-size: .65em;
     background: #c4c4c4;
     width: 140px;
     height: 60px;

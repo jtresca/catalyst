@@ -19,7 +19,7 @@
       Joe's Collection
     </h3>
     <div class="store">
-      <MyLogos v-bind:logoStore="myLogos"/>
+      <MyLogos v-bind:logoStore="myLogos" v-on:delete-item="deleteFromCollection"/>
     </div>
     </section>
   </div>
@@ -58,17 +58,16 @@ export default {
       else if (this.searchVal) {
         axios.get(`https://autocomplete.clearbit.com/v1/companies/suggest?query=${this.searchVal}`)
         .then(res => {
-          console.log("here is what I'm searching:", event);
+          //filtering out 
+          this.filterMyLogos(res.data);
           this.apiSuggestVals = res.data;
           console.log("SUGGESTED_RESULTS: ", this.apiSuggestVals);
         })
         .catch(err => console.log(err))
       }
-
-      
     },
-    filterMyLogos() {
-      console.log("TRIGGERED filteredMyLogos");
+    filterMyLogos(apiResponse) {
+      console.log("TRIGGERED filteredMyLogos", apiResponse);
     },
     addToCollection(newItem){
       console.log("EMITTED!!!!: ", newItem)
@@ -79,6 +78,13 @@ export default {
       else { 
        alert("This logo is already in the collection!");
       }
+    },
+    deleteFromCollection(deleteTarget) {
+      console.log("EMITTED AND TRYING TO DELETE THIS: ", deleteTarget)
+      const indexOfTarget = this.myLogos.findIndex(i => i.name === deleteTarget.name);
+      const lastDeleted = this.myLogos.splice(indexOfTarget, 1);
+      console.log("Here is the array index num of delete TARGET: ",indexOfTarget);
+      console.log("DELETED this last", lastDeleted);
     }
   }
 }

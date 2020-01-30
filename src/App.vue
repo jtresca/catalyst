@@ -58,15 +58,15 @@ export default {
         axios.get(`https://autocomplete.clearbit.com/v1/companies/suggest?query=${this.searchVal}`)
         .then(res => {
           //filtering out 
-          this.filterMyLogos(res.data);
-          this.apiSuggestVals = res.data;
+          this.apiSuggestVals =  this.filterMyLogos(res.data);
           console.log("SUGGESTED_RESULTS: ", this.apiSuggestVals);
         })
         .catch(err => console.log(err))
       }
     },
     filterMyLogos(apiResponse) {
-      console.log("TRIGGERED filteredMyLogos", apiResponse);
+      console.log("TRIGGERED BEFORE filteredMyLogos", apiResponse);
+      return apiResponse = apiResponse.filter(ar => !this.myLogos.find(rm => (rm.name === ar.name) ))
     },
     addToCollection(newItem){
       if (this.myLogos.findIndex(x => x.name === newItem.name) < 0) {
@@ -78,7 +78,7 @@ export default {
     },
     deleteFromCollection(deleteTarget) {
       const indexOfTarget = this.myLogos.findIndex(i => i.name === deleteTarget.name);
-      const lastDeleted = this.myLogos.splice(indexOfTarget, 1);
+      this.myLogos.splice(indexOfTarget, 1);
     }
   }
 }

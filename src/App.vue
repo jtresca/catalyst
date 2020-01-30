@@ -18,8 +18,8 @@
       <h3>
       Joe's Collection
     </h3>
-    <div>
-      <MyLogos/>
+    <div class="store">
+      <MyLogos v-bind:logoStore="myLogos"/>
     </div>
     </section>
   </div>
@@ -64,7 +64,7 @@ export default {
         })
         .catch(err => console.log(err))
       }
-      
+
       
     },
     filterMyLogos() {
@@ -72,7 +72,13 @@ export default {
     },
     addToCollection(newItem){
       console.log("EMITTED!!!!: ", newItem)
-      this.myLogos = newItem;
+      if (this.myLogos.findIndex(x => x.name === newItem.name) < 0) {
+        this.myLogos = [...this.myLogos, newItem];
+        console.log("CREATED_OBJ", this.myLogos);
+      }
+      else { 
+       alert("This logo is already in the collection!");
+      }
     }
   }
 }

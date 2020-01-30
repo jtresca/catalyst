@@ -84,4 +84,11 @@ export default {
     position: relative;
     bottom: .22em;
   }
+
+  @media only screen  and (min-width : 1824px) {
+    span {
+    width:84%;
+  }
+
+  }
 </style>
